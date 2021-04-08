@@ -3,6 +3,8 @@
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+const result = axios.get("https://api.github.com/users/joseph-witzke")
+console.log(result);
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -49,6 +51,59 @@ const followersArray = [];
       </div>
     </div>
 */
+const cards = document.querySelector(".cards");
+
+function gitCardMaker({avatar_url, name, login, location, html_url, followers, following, bio}){
+  const cardDiv = document.createElement("div");
+  const userImg = document.createElement("img");
+  const infoDiv = document.createElement("div");
+  const subName = document.createElement("h3");
+  const userName = document.createElement("p");
+  const pLocation = document.createElement("p");
+  const profile = document.createElement("p");
+  const address = document.createElement("a");
+  const pFollowers = document.createElement("p");
+  const pFollowing = document.createElement("p");
+  const pBio = document.createElement("p");
+
+  cardDiv.appendChild(userImg);
+  cardDiv.appendChild(infoDiv);
+  infoDiv.appendChild(subName);
+  infoDiv.appendChild(userName);
+  infoDiv.appendChild(pLocation);
+  infoDiv.appendChild(profile);
+  profile.appendChild(address);
+  infoDiv.appendChild(followers);
+  infoDiv.appendChild(following);
+  infoDiv.appendChild(bio);
+
+  cardDiv.classList.add("card");
+  infoDiv.classList.add("card-info");
+  subName.classList.add("name");
+  userName.classList.add("username");
+  
+  userImg.src = avatar_url;
+  subName.textContent = name;
+  userName.textContent = login;
+  pLocation.textContent = location;
+  profile.textContent = "Profile: ";
+  address.href = html_url;
+  followers.textContent = followers;
+  following.textContent = following;
+  bio.textContent = bio;
+
+return cardDiv
+}
+
+axios
+  .get("https://api.github.com/users/joseph-witzke")
+  .then((res) => {
+
+  })
+  .catch((err) => {
+
+  });
+  
 
 /*
   List of LS Instructors Github username's:
